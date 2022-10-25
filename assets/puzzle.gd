@@ -18,8 +18,7 @@ func _ready():
 		card.phrase = phrases[i]
 		if i == 0:
 			card.name = "QuestionCard"
-			card.pressed = true
-			card.call_deferred("fly_to", _quest_zone, 1.6, false)
+			card.call_deferred("set_pressed", true)
 		else:
 			card.name = "Card" + str(i)
 		card.connect("opened", self, "_on_Card_opened")
@@ -27,9 +26,14 @@ func _ready():
 
 
 func _on_Card_opened(new_card):
+	if new_card.name == "QuestionCard":
+		new_card.call_deferred("fly_to", _quest_zone, 1.6, false)
+		return
 	if opened.size() >= 2:
+		var delay = 0.1
 		for opened_card in opened:
-			opened_card.pressed = false
+			opened_card.flip_back(delay)
+			delay += 0.2
 		opened = []
 	opened.append(new_card)
 	if opened.size() >= 2:
