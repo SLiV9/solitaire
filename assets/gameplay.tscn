@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/brain.gd" type="Script" id=3]
 [ext_resource path="res://assets/puzzle.gd" type="Script" id=5]
 
 [node name="Puzzle" type="MarginContainer"]
@@ -75,24 +76,22 @@ columns = 3
 [node name="Control2" type="Control" parent="VBoxContainer"]
 margin_top = 148.0
 margin_right = 984.0
-margin_bottom = 492.0
+margin_bottom = 524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 496.0
+margin_top = 528.0
 margin_right = 984.0
 margin_bottom = 560.0
 custom_constants/separation = 20
 
 [node name="Anecdote" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
 margin_right = 927.0
-margin_bottom = 64.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-bbcode_enabled = true
-bbcode_text = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
-text = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
+text = "I wonder..."
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,13 +116,13 @@ size_flags_horizontal = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 947.0
 margin_right = 984.0
-margin_bottom = 64.0
+margin_bottom = 32.0
 alignment = 2
 
 [node name="BackButton" type="LinkButton" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 33.0
+margin_top = 1.0
 margin_right = 37.0
-margin_bottom = 64.0
+margin_bottom = 32.0
 focus_mode = 2
 custom_colors/font_color_hover = Color( 0.560784, 0.619608, 0.6, 1 )
 text = "Back"
@@ -131,5 +130,8 @@ underline = 1
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "card" ), [ ExtResource( 2 ) ] ]
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource( 3 )
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

@@ -1,0 +1,28 @@
+##############################################################################
+###                                                                        ###
+###                            HERE BE SPOILERS                            ###
+###                                                                        ###
+##############################################################################
+[spoilers]
+spoilers = true
+
+[puzzle]
+num_rows = 3
+num_cols = 2
+includes_question = true
+introduction = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
+conclusion = "That's it."
+
+[question]
+phrase = "What day is it today?"
+
+[answer]
+phrase = "Monday"
+
+[pairs.yesterday]
+face = "Sunday"
+phrase = "Yesterday"
+
+[pairs.tomorrow]
+face = "Tuesday"
+phrase = "Tomorrow"

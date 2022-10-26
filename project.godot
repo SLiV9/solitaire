@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Brain",
+"language": "GDScript",
+"path": "res://assets/brain.gd"
+}, {
+"base": "TextureButton",
+"class": "Card",
+"language": "GDScript",
+"path": "res://assets/card.gd"
+} ]
+_global_script_class_icons={
+"Brain": "",
+"Card": ""
+}
+
 [application]
 
 config/name="Solitaire"

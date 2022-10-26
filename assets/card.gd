@@ -1,3 +1,4 @@
+class_name Card
 extends TextureButton
 
 signal opened(card)
@@ -12,7 +13,13 @@ onready var _label = $Front/MarginContainer/VBoxContainer/RichTextLabel
 func _ready():
 	self.disabled = true
 	$Back.visible = false
-	_label.bbcode_text = "[center]%s[/center]" % [phrase]
+	_label.bbcode_text = "[center]%s[/center]" % [self.phrase]
+
+
+func imbue(new_pair_name, new_phrase):
+	self.pair_name = new_pair_name
+	self.phrase = new_phrase
+	_label.bbcode_text = "[center]%s[/center]" % [new_phrase]
 
 
 func _on_Card_toggled(button_pressed):
