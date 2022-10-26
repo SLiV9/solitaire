@@ -15,20 +15,17 @@ func _ready():
 	num_pairs_remaining = $Brain.num_pairs()
 	var indices = range(num_cards)
 	indices.shuffle()
-	var delay = 0.2 * num_cards
-	var reveal_delay = delay + 1.5
+	var delay = 1.0 + 0.2 * num_cards
+	var reveal_delay = delay + 0.5
 	for i in indices:
 		var card = $ResourcePreloader.get_resource("card").instance()
+		card.location_number = i + 1
 		if i == 0 and $Brain.includes_question():
 			card.name = "QuestionCard"
-			card.pair_name = "question"
-			card.phrase = $Brain.question()
 			card.call_deferred("reveal_after", reveal_delay)
 			card.connect("revealed", self, "_on_Card_revealed")
 		else:
 			card.name = "Card" + str(i)
-			card.pair_name = ""
-			card.phrase = "Huh?!"
 			card.call_deferred("enable_after", reveal_delay)
 		card.connect("opened", self, "_on_Card_opened")
 		card.call_deferred("place", delay)
@@ -38,6 +35,7 @@ func _ready():
 
 
 func _on_Card_revealed(card):
+	$Brain.open_question_card(card)
 	card.call_deferred("set", "pressed", true)
 
 

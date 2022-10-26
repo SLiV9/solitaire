@@ -4,8 +4,10 @@ extends TextureButton
 signal opened(card)
 signal revealed(card)
 
+export var location_number = 0
+export var entity_name = ""
 export var pair_name = ""
-export var phrase = ""
+export var phrase = "Huh?!"
 
 onready var _label = $Front/MarginContainer/VBoxContainer/RichTextLabel
 
@@ -16,8 +18,7 @@ func _ready():
 	_label.bbcode_text = "[center]%s[/center]" % [self.phrase]
 
 
-func imbue(new_pair_name, new_phrase):
-	self.pair_name = new_pair_name
+func set_phrase(new_phrase):
 	self.phrase = new_phrase
 	_label.bbcode_text = "[center]%s[/center]" % [new_phrase]
 
