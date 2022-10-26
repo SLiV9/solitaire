@@ -9,6 +9,7 @@ onready var _label = $Front/MarginContainer/VBoxContainer/RichTextLabel
 
 
 func _ready():
+	$Back.visible = false
 	_label.bbcode_text = "[center]%s[/center]" % [phrase]
 
 
@@ -21,7 +22,19 @@ func _on_Card_toggled(button_pressed):
 		sfx.play()
 
 
-func fly_to(other_node, duration, with_angle):
+func place(delay):
+	var from = Vector2(self.get_parent().rect_global_position.x, 8000)
+	var to = self.rect_global_position
+	$Tween.interpolate_property(self, "rect_global_position", from, from,
+		0.01, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "rect_global_position", from, to,
+		0.2, Tween.TRANS_CUBIC, Tween.EASE_OUT, delay)
+	$Tween.start()
+	$PlaceTimer.wait_time = delay
+	$PlaceTimer.start()
+
+
+func fly_to(other_node, delay, duration, with_angle):
 	var current_position = self.rect_global_position
 	var hole = Control.new()
 	hole.rect_min_size = self.rect_min_size
@@ -29,15 +42,20 @@ func fly_to(other_node, duration, with_angle):
 	get_parent().remove_child(self)
 	other_node.add_child(self)
 	$Tween.interpolate_property(self, "rect_global_position",
+		current_position, current_position,
+		0.01, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "rect_global_position",
 		current_position, other_node.rect_global_position,
-		duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, delay)
 	if with_angle:
-		var current_rotation = $Front.rect_rotation
+		var current_rotation = 0
 		var target_rotation = rand_range(-40.0, 40.0)
 		$Tween.interpolate_property($Front, "rect_rotation",
 			current_rotation, target_rotation,
-			duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, delay)
 	$Tween.start()
+	$FlyTimer.wait_time = delay + 0.05
+	$FlyTimer.start()
 
 
 func flip_back(delay):
@@ -50,3 +68,15 @@ func _on_FlipBackTimer_timeout():
 	$AnimationPlayer.play_backwards("flip_to_front")
 	$Sfx/FlipBack.play()
 
+
+func _on_FlyTimer_timeout():
+	var sfxs = [$Sfx/Fly1, $Sfx/Fly2, $Sfx/Fly3]
+	var sfx = sfxs[randi() % sfxs.size()]
+	sfx.play()
+
+
+func _on_PlaceTimer_timeout():
+	$Back.visible = true
+	var sfxs = [$Sfx/Place1]
+	var sfx = sfxs[randi() % sfxs.size()]
+	sfx.play()
