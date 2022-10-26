@@ -1,0 +1,44 @@
+##############################################################################
+###                                                                        ###
+###                            HERE BE SPOILERS                            ###
+###                                                                        ###
+##############################################################################
+[spoilers]
+spoilers = true
+
+[brain]
+suffers_from_misplacement = true
+max_num_memories = 7
+
+[puzzle]
+num_cols = 6
+num_rows = 2
+includes_question = true
+introduction = "I'm writing a letter to my sister, Mary. She never responds, but I want her to know I haven't forgotten about her."
+conclusion = "Great, now I can send my letter."
+
+[question]
+phrase = "Where is my pen?"
+
+[answer]
+phrase = "On a shelf"
+
+[pairs.jewerly]
+face = "Gold Ring"
+phrase = "Between my socks"
+
+[pairs.newspaper]
+face = "Newspaper"
+phrase = "On the coffee table"
+
+[pairs.glasses]
+face = "Glasses"
+phrase = "Next to my bed"
+
+[pairs.cards]
+face = "Playing cards"
+phrase = "On the dinner table"
+
+[pairs.keys]
+face = "Keys"
+phrase = "On the piano"

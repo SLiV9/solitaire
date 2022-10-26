@@ -11,6 +11,8 @@ const PATHS = [
 
 var data: ConfigFile
 
+var _suffers_from_misplacement = false
+
 var _num_pairs = 0
 var _entities = []
 var _available_entities = []
@@ -18,6 +20,7 @@ var _opened_entities = []
 var _locked_entities = []
 var _locked_locations = []
 
+var _max_num_memories = 0
 var _memories = []
 
 
@@ -35,6 +38,9 @@ func _ready():
 		elif section_name == "answer":
 			_entities.append(section_name)
 	_available_entities = [] + _entities
+	_max_num_memories = data.get_value("brain", "max_num_memories", 1000)
+	_suffers_from_misplacement = data.get_value("brain",
+		"suffers_from_misplacement", false)
 	if OS.has_feature("editor"):
 		print("entities: ", _entities)
 		run_test()
@@ -44,10 +50,14 @@ func run_test():
 	pass
 
 
+func num_rows():
+	return data.get_value("puzzle", "num_rows")
+
+func num_cols():
+	return data.get_value("puzzle", "num_cols")
+
 func num_cards():
-	var num_rows = data.get_value("puzzle", "num_rows")
-	var num_cols = data.get_value("puzzle", "num_cols")
-	return num_rows * num_cols
+	return self.num_rows() * self.num_cols()
 
 func num_pairs():
 	return _num_pairs
@@ -72,9 +82,9 @@ func _pick_entity(picked_location):
 	var impossible_entities = []
 	for memory in _memories:
 		match memory:
-			[picked_location, "contains_entity", var entity_name]:
+			[picked_location, "contains_entity", var entity_name, ..]:
 				return entity_name
-			[_, "contains_entity", var entity_name]:
+			[_, "contains_entity", var entity_name, ..]:
 				impossible_entities.append(entity_name)
 	var possible_entities = []
 	for entity_name in _available_entities:
@@ -84,7 +94,28 @@ func _pick_entity(picked_location):
 
 
 func _push_memory(left, operation, right):
-	_memories.push_front([left, operation, right])
+	var priority = 1.0
+	match operation:
+		"contains_entity":
+			if _suffers_from_misplacement and right.ends_with("?"):
+				priority = -1.0
+	var new_memory = [left, operation, right, priority]
+	var i = _memories.find(new_memory)
+	if i >= 0:
+		_memories.remove(i)
+		i = -1
+	for j in range(_memories.size()):
+		match _memories[j]:
+			[_, _, _, var p]:
+				if p <= priority:
+					i = j
+					break
+	if i >= 0:
+		_memories.insert(i, new_memory)
+	else:
+		_memories.append(new_memory)
+	if _memories.size() > _max_num_memories:
+		_memories.resize(_max_num_memories)
 
 
 func open_card(card: Card):

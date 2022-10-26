@@ -11,6 +11,7 @@ var num_pairs_remaining = 0
 
 
 func _ready():
+	_grid.columns = $Brain.num_cols()
 	var num_cards = $Brain.num_cards()
 	num_pairs_remaining = $Brain.num_pairs()
 	var indices = range(num_cards)
