@@ -1,0 +1,157 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/palettes/stormy-beach-1x-modified.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/Fasthand/Fasthand-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/palettes/stormy-beach-1x.png" type="Texture" id=4]
+[ext_resource path="res://assets/titlescreen.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 240
+extra_spacing_top = -60
+extra_spacing_bottom = -60
+font_data = ExtResource( 2 )
+
+[node name="Control" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.862745, 0.772549, 0.647059, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 125.0
+margin_right = 1024.0
+margin_bottom = 440.0
+custom_colors/default_color = Color( 0.0666667, 0.0588235, 0.0588235, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Solitaire[/center]"
+text = "[center]Solitaire[/center]"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 444.0
+margin_right = 1024.0
+margin_bottom = 475.0
+custom_constants/separation = 20
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 470.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="StartButton" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 490.0
+margin_right = 533.0
+margin_bottom = 31.0
+focus_mode = 2
+text = "Start"
+underline = 1
+
+[node name="StartButton1" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 332.0
+margin_right = 398.0
+margin_bottom = 31.0
+text = "Monday"
+underline = 1
+
+[node name="StartButton2" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 418.0
+margin_right = 480.0
+margin_bottom = 31.0
+focus_mode = 2
+text = "Tuesday"
+underline = 1
+
+[node name="StartButton3" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 500.0
+margin_right = 591.0
+margin_bottom = 31.0
+focus_mode = 2
+text = "Wednesday"
+underline = 1
+
+[node name="StartButton4" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 611.0
+margin_right = 683.0
+margin_bottom = 31.0
+focus_mode = 2
+text = "Thursday"
+underline = 1
+
+[node name="StartButton5" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 703.0
+margin_right = 754.0
+margin_bottom = 31.0
+focus_mode = 2
+text = "Friday"
+underline = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 553.0
+margin_right = 1024.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+visible = false
+margin_top = 270.0
+margin_right = 1024.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 0, 100 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
+visible = false
+margin_top = 322.0
+margin_right = 1024.0
+margin_bottom = 422.0
+rect_min_size = Vector2( 0, 100 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+margin_top = 479.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton1" to="." method="_on_StartButton1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton2" to="." method="_on_StartButton2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton3" to="." method="_on_StartButton3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton4" to="." method="_on_StartButton4_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton5" to="." method="_on_StartButton5_pressed"]

@@ -337,7 +337,15 @@ one_shot = true
 [node name="PlaceTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="RevealTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnableTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="toggled" from="." to="." method="_on_Card_toggled"]
 [connection signal="timeout" from="FlipBackTimer" to="." method="_on_FlipBackTimer_timeout"]
 [connection signal="timeout" from="FlyTimer" to="." method="_on_FlyTimer_timeout"]
 [connection signal="timeout" from="PlaceTimer" to="." method="_on_PlaceTimer_timeout"]
+[connection signal="timeout" from="RevealTimer" to="." method="_on_RevealTimer_timeout"]
+[connection signal="timeout" from="EnableTimer" to="." method="_on_EnableTimer_timeout"]

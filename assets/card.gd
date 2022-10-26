@@ -1,6 +1,7 @@
 extends TextureButton
 
 signal opened(card)
+signal revealed(card)
 
 export var pair_name = ""
 export var phrase = ""
@@ -9,6 +10,7 @@ onready var _label = $Front/MarginContainer/VBoxContainer/RichTextLabel
 
 
 func _ready():
+	self.disabled = true
 	$Back.visible = false
 	_label.bbcode_text = "[center]%s[/center]" % [phrase]
 
@@ -23,7 +25,7 @@ func _on_Card_toggled(button_pressed):
 
 
 func place(delay):
-	var from = Vector2(self.get_parent().rect_global_position.x, 8000)
+	var from = Vector2(self.get_parent().rect_global_position.x, -8000)
 	var to = self.rect_global_position
 	$Tween.interpolate_property(self, "rect_global_position", from, from,
 		0.01, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -40,7 +42,7 @@ func fly_to(other_node, delay, duration, with_angle):
 	hole.rect_min_size = self.rect_min_size
 	get_parent().add_child_below_node(self, hole)
 	get_parent().remove_child(self)
-	other_node.add_child(self)
+	other_node.get_node("Contents").add_child(self)
 	$Tween.interpolate_property(self, "rect_global_position",
 		current_position, current_position,
 		0.01, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -80,3 +82,22 @@ func _on_PlaceTimer_timeout():
 	var sfxs = [$Sfx/Place1]
 	var sfx = sfxs[randi() % sfxs.size()]
 	sfx.play()
+
+
+func reveal_after(delay):
+	$RevealTimer.wait_time = delay
+	$RevealTimer.start()
+
+
+func enable_after(delay):
+	$EnableTimer.wait_time = delay
+	$EnableTimer.start()
+
+
+func _on_RevealTimer_timeout():
+	self.disabled = false
+	emit_signal("revealed", self)
+
+
+func _on_EnableTimer_timeout():
+	self.disabled = false

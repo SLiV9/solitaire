@@ -1,97 +1,135 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/palettes/stormy-beach-1x-modified.png" type="Texture" id=1]
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/card.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/palettes/stormy-beach-1x.png" type="Texture" id=4]
 [ext_resource path="res://assets/puzzle.gd" type="Script" id=5]
 
-[node name="Control" type="MarginContainer"]
+[node name="Puzzle" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 50
-custom_constants/margin_top = 50
-custom_constants/margin_left = 50
-custom_constants/margin_bottom = 50
+theme = ExtResource( 1 )
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 1230.0
-margin_bottom = 670.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="VBoxContainer"]
-margin_right = 1180.0
-margin_bottom = 234.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 140.0
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 238.0
-margin_right = 1180.0
-margin_bottom = 378.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 30.0
+margin_right = 954.0
+margin_bottom = 140.0
 
-[node name="QuestZone" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="QuestZone" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 margin_right = 140.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 140, 140 )
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Contents" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/QuestZone"]
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 144.0
-margin_right = 1036.0
+margin_right = 780.0
 margin_bottom = 140.0
 size_flags_horizontal = 3
 
-[node name="DiscardPile" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 1040.0
-margin_right = 1180.0
+[node name="DiscardPile" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 784.0
+margin_right = 924.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 140, 140 )
 
+[node name="Contents" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/DiscardPile"]
+
 [node name="Cards" type="CenterContainer" parent="VBoxContainer"]
 show_behind_parent = true
-margin_top = 382.0
-margin_right = 1180.0
-margin_bottom = 382.0
+margin_top = 144.0
+margin_right = 984.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 
-[node name="Puzzle" type="GridContainer" parent="VBoxContainer/Cards"]
-margin_left = 590.0
-margin_right = 590.0
+[node name="Grid" type="GridContainer" parent="VBoxContainer/Cards"]
+margin_left = 492.0
+margin_right = 492.0
 columns = 3
-script = ExtResource( 5 )
-
-[node name="ResourcePreloader" type="ResourcePreloader" parent="VBoxContainer/Cards/Puzzle"]
-resources = [ PoolStringArray( "card" ), [ ExtResource( 2 ) ] ]
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-visible = false
-margin_top = 270.0
-margin_right = 1024.0
-margin_bottom = 370.0
-rect_min_size = Vector2( 0, 100 )
-texture = ExtResource( 1 )
-expand = true
-
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
-visible = false
-margin_top = 322.0
-margin_right = 1024.0
-margin_bottom = 422.0
-rect_min_size = Vector2( 0, 100 )
-texture = ExtResource( 4 )
-expand = true
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
-margin_top = 386.0
-margin_right = 1180.0
-margin_bottom = 620.0
+margin_top = 148.0
+margin_right = 984.0
+margin_bottom = 492.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 496.0
+margin_right = 984.0
+margin_bottom = 560.0
+custom_constants/separation = 20
+
+[node name="Anecdote" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 927.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
+text = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 473.0
+margin_right = 927.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 473.0
+margin_right = 927.0
+margin_bottom = 192.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 947.0
+margin_right = 984.0
+margin_bottom = 64.0
+alignment = 2
+
+[node name="BackButton" type="LinkButton" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 33.0
+margin_right = 37.0
+margin_bottom = 64.0
+focus_mode = 2
+custom_colors/font_color_hover = Color( 0.560784, 0.619608, 0.6, 1 )
+text = "Back"
+underline = 1
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "card" ), [ ExtResource( 2 ) ] ]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
