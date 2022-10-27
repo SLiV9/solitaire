@@ -8,6 +8,7 @@ spoilers = true
 
 [brain]
 suffers_from_misplacement = true
+suffers_from_forgetfulness = true
 max_num_memories = 6
 
 [puzzle]

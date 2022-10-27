@@ -12,6 +12,8 @@ const PATHS = [
 var data: ConfigFile
 
 var _suffers_from_misplacement = false
+var _suffers_from_confusion = false
+var _suffers_from_forgetfulness = false
 
 var _num_pairs = 0
 var _entities = []
@@ -42,6 +44,10 @@ func _ready():
 	_max_num_memories = data.get_value("brain", "max_num_memories", 1000)
 	_suffers_from_misplacement = data.get_value("brain",
 		"suffers_from_misplacement", false)
+	_suffers_from_confusion = data.get_value("brain",
+		"suffers_from_confusion", false)
+	_suffers_from_forgetfulness = data.get_value("brain",
+		"suffers_from_forgetfulness", false)
 	if OS.has_feature("editor"):
 		print("entities: ", _entities)
 		run_test()
@@ -77,12 +83,16 @@ func question():
 	return data.get_value("question", "phrase")
 
 func answer():
-	if data.has_section("answer"):
-		return data.get_value("answer", "phrase")
+	if _suffers_from_forgetfulness:
+		return _remaining_answer()
+	return data.get_value("answer", "phrase")
+
+func _remaining_answer():
 	for entity_name in _available_entities:
 		if entity_name.ends_with("!"):
 			var pair_name = entity_name.rstrip("?!")
 			_answer_phrase = data.get_value("pairs." + pair_name, "phrase")
+			Progress.cat_picture = data.get_value("pairs." + pair_name, "face")
 			return _answer_phrase
 	return data.get_value("answer", "phrase")
 
@@ -137,13 +147,17 @@ func open_card(card: Card):
 	card.pair_name = pair_name
 	if entity_name.ends_with("?"):
 		var face_or_phrase = data.get_value("pairs." + pair_name, "face")
-		if face_or_phrase.begins_with("/"):
+		if face_or_phrase == "{cat.png}":
+			card.set_image(Progress.cat_picture.lstrip("/"))
+		elif face_or_phrase.begins_with("/"):
 			card.set_image(face_or_phrase.lstrip("/"))
 		else:
 			card.set_phrase(face_or_phrase)
 	elif entity_name.ends_with("!"):
 		var phrase = data.get_value("pairs." + pair_name, "phrase")
 		card.set_phrase(phrase)
+	elif not includes_question():
+		card.set_phrase("Why?")
 	else:
 		var phrase = data.get_value(entity_name, "phrase")
 		card.set_phrase(phrase)

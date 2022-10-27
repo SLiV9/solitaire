@@ -63,11 +63,14 @@ func fly_to(other_node, delay, duration, with_angle):
 	get_parent().add_child_below_node(self, hole)
 	get_parent().remove_child(self)
 	other_node.get_node("Contents").add_child(self)
+	var target_position = other_node.rect_global_position
+	if other_node.visible == false:
+		target_position.y = -200
 	$Tween.interpolate_property(self, "rect_global_position",
 		current_position, current_position,
 		0.01, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "rect_global_position",
-		current_position, other_node.rect_global_position,
+		current_position, target_position,
 		duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, delay)
 	if with_angle:
 		var current_rotation = 0

@@ -3,6 +3,7 @@ extends Node
 
 export var current_day_number = 1
 export var furthest_day_number_completed = 0
+export var cat_picture = "/027015_recolored.png"
 
 
 func _ready():

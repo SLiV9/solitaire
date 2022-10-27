@@ -1,0 +1,38 @@
+##############################################################################
+###                                                                        ###
+###                            HERE BE SPOILERS                            ###
+###                                                                        ###
+##############################################################################
+[spoilers]
+spoilers = true
+
+[brain]
+suffers_from_misplacement = true
+suffers_from_confusion = true
+max_num_memories = 5
+
+[puzzle]
+num_cols = 3
+num_rows = 3
+includes_question = false
+introduction = "I woke up today and a wave of sadness hit me."
+conclusion = ""
+
+[answer]
+phrase = "I feel lonely sometimes"
+
+[pairs.sister]
+face = "/093087_recolored.png"
+phrase = "Died 10 years ago"
+
+[pairs.cat]
+face = "{cat.png}"
+phrase = "Got hit by a car"
+
+[pairs.crush]
+face = "/093006_recolored.png"
+phrase = "Never knew I loved him"
+
+[pairs.everyone]
+face = "Everyone else"
+phrase = "Hates me"

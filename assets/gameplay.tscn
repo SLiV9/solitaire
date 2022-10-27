@@ -1,24 +1,38 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/brain.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/626950__maikkihapsis__tadaa.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/puzzle.gd" type="Script" id=5]
+[ext_resource path="res://assets/victory_shader.tres" type="Shader" id=6]
+[ext_resource path="res://assets/palettes/stormy-beach-1x.png" type="Texture" id=7]
 
-[node name="Puzzle" type="MarginContainer"]
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 6 )
+shader_param/PI = 3.14159
+shader_param/TWOPI = 6.28319
+shader_param/NUM_EXPLOSIONS = 3.0
+shader_param/NUM_PARTICLES = 70.0
+shader_param/palette_size = 9
+shader_param/MOD3 = Vector3( 0.1031, 0.11369, 0.13787 )
+shader_param/palette = ExtResource( 7 )
+
+[node name="Puzzle" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
@@ -29,64 +43,64 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 984.0
 margin_bottom = 140.0
 custom_constants/margin_right = 30
 custom_constants/margin_left = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 30.0
 margin_right = 954.0
 margin_bottom = 140.0
 
-[node name="QuestZone" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="QuestZone" type="CenterContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 margin_right = 140.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 140, 140 )
 
-[node name="Contents" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/QuestZone"]
+[node name="Contents" type="Node" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/QuestZone"]
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 144.0
 margin_right = 780.0
 margin_bottom = 140.0
 size_flags_horizontal = 3
 
-[node name="DiscardPile" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="DiscardPile" type="CenterContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 784.0
 margin_right = 924.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 140, 140 )
 
-[node name="Contents" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/DiscardPile"]
+[node name="Contents" type="Node" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DiscardPile"]
 
-[node name="Cards" type="CenterContainer" parent="VBoxContainer"]
+[node name="Cards" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 show_behind_parent = true
 margin_top = 144.0
 margin_right = 984.0
 margin_bottom = 144.0
 size_flags_horizontal = 3
 
-[node name="Grid" type="GridContainer" parent="VBoxContainer/Cards"]
+[node name="Grid" type="GridContainer" parent="MarginContainer/VBoxContainer/Cards"]
 margin_left = 492.0
 margin_right = 492.0
 columns = 3
 
-[node name="Control2" type="Control" parent="VBoxContainer"]
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 margin_top = 148.0
 margin_right = 984.0
 margin_bottom = 524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 528.0
 margin_right = 984.0
 margin_bottom = 560.0
 custom_constants/separation = 20
 
-[node name="Anecdote" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+[node name="Anecdote" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 927.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
@@ -97,7 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 visible = false
 margin_left = 473.0
 margin_right = 927.0
@@ -106,20 +120,20 @@ size_flags_horizontal = 3
 custom_constants/margin_right = 30
 custom_constants/margin_left = 30
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 visible = false
 margin_left = 473.0
 margin_right = 927.0
 margin_bottom = 192.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 947.0
 margin_right = 984.0
 margin_bottom = 32.0
 alignment = 2
 
-[node name="BackButton" type="LinkButton" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="BackButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 1.0
 margin_right = 37.0
 margin_bottom = 32.0
@@ -128,10 +142,25 @@ custom_colors/font_color_hover = Color( 0.560784, 0.619608, 0.6, 1 )
 text = "Back"
 underline = 1
 
+[node name="Fireworks" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+mouse_default_cursor_shape = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "card" ), [ ExtResource( 2 ) ] ]
 
 [node name="Brain" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[node name="VictorySfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -2.622
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

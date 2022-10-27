@@ -28,6 +28,8 @@ func _ready():
 		else:
 			card.name = "Card" + str(i)
 			card.call_deferred("enable_after", reveal_delay)
+			_quest_zone.visible = false
+			_discard_pile.visible = false
 		card.connect("opened", self, "_on_Card_opened")
 		card.call_deferred("place", delay)
 		delay -= 0.2
@@ -72,8 +74,14 @@ func _on_Card_opened(new_card):
 			opened = []
 	elif num_pairs_remaining == 0:
 		Progress.complete_current_day()
-		_anecdote.text = $Brain.conclusion()
-		_back_button.text = "Continue"
+		var conclusion = $Brain.conclusion()
+		_anecdote.text = conclusion
+		if len(conclusion) > 0:
+			_back_button.text = "Continue"
+		else:
+			$Fireworks.visible = true
+			$VictorySfx.play()
+			_back_button.text = "Leave"
 
 
 

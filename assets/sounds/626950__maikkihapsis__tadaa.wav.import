@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/626950__maikkihapsis__tadaa.wav-2ed72dea6e4e89b17798c61b34cd7bde.sample"
+
+[deps]
+
+source_file="res://assets/sounds/626950__maikkihapsis__tadaa.wav"
+dest_files=[ "res://.import/626950__maikkihapsis__tadaa.wav-2ed72dea6e4e89b17798c61b34cd7bde.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
