@@ -24,19 +24,59 @@ phrase = "What should I yell?"
 [pairs.whiskers]
 face = "/027015_recolored.png"
 phrase = "Whiskers"
+conclusion = "I don't think I could have gotten my degree without you, Whiskers."
+face_anecdotes = [
+	"this beauty kept me company while I was in college.",
+	"my college roommates never gave this cat the attention he deserved.",
+]
+phrase_anecdotes = [
+	"that's the name of a black cat when green eyes.",
+]
 
 [pairs.marmalade]
 face = "/027019_recolored.png"
 phrase = "Marmalade"
+conclusion = "Marmalade had a good life, I think."
+face_anecdotes = [
+	"I got this sweetheart when I moved into my first house.",
+	"it's been ages since I've had to clean up so much orange hair."
+]
+phrase_anecdotes = [
+	"that name belongs to an orange cat, of course.",
+]
 
 [pairs.mimi]
 face = "/027109_recolored.png"
 phrase = "Mimi"
+conclusion = "I'll never forget how big Mimi's eyes were when she first saw me."
+face_anecdotes = [
+	"this is the cat my parents brought home when I was ten.",
+	"it was wonderful growing up together with this one."
+]
+phrase_anecdotes = [
+	"a short name is appropriate for a small cat.",
+]
 
 [pairs.nora]
 face = "/028235_recolored.png"
 phrase = "Nora"
+conclusion = "Mrs. Stevens was devastated when Nora died."
+face_anecdotes = [
+	"this was the cat of Mrs. Stevens from next door.",
+	"Mrs. Stevens treated her cat like it was royalty.",
+]
+phrase_anecdotes = [
+	"that's a special name for a special breed of cat.",
+]
 
 [pairs.grumpy]
 face = "/028775_recolored.png"
 phrase = "Grumpy"
+conclusion = "They never told me how Grumpy died, but it wasn't starvation."
+face_anecdotes = [
+	"this was my neighbours' cat.",
+	"this chubby fellow always begged me for food.",
+]
+phrase_anecdotes = [
+	"that is a fitting name for a cat that's always frowning.",
+]
