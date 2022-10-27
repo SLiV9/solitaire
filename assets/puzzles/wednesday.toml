@@ -15,30 +15,138 @@ num_cols = 6
 num_rows = 2
 includes_question = true
 introduction = "A man has barged into my room. He is asking all kinds of rude questions."
-conclusion = "Oh that's right, this is my physician Dr. Walters. I don't know who told him to come over. There's nothing wrong with me."
+conclusion = "Oh that's right, this man is my physician Dr. Walters. I don't know who told him to come over. There's nothing wrong with me."
+surnames = [
+	"Blanchet",
+	"Clark",
+	"Cook",
+	"Cooper",
+	"Corbyn",
+	"Eades",
+	"Ellis",
+	"Fischer",
+	"Garnier",
+	"Hames",
+	"Holdsworth",
+	"Johnson",
+	"Jones",
+	"Khela",
+	"Laurent",
+	"Lawson",
+	"Levin",
+	"Manley",
+	"Meyer",
+	"Monet",
+	"Moulin",
+	"Pargan",
+	"Poole",
+	"Roberts",
+	"Schneider",
+	"Shenton",
+	"Smith",
+	"Stevens",
+	"Toussaint",
+	"Tyrrell",
+	"Weatherford",
+	"Williams",
+	"Wilson",
+	"Wrigley",
+]
 
 [question]
 phrase = "Who is this man?"
 
 [answer]
 phrase = "Physician"
+phrase_anecdotes = [
+	"I don't trust anyone in the medical field.",
+	"physicians are just pill pushers.",
+]
 
 [pairs.president]
 face = "/080017_recolored.png"
 phrase = "Prime Minister"
+names = ["Richard", "Emanuel", "Nicholas", "Mark"]
+face_anecdotes = [
+	"this is {name}, he always says {quote}",
+	"this is {name}, I heard him say {quote}",
+]
+quotes = [
+	"things that aren't true.",
+	"\"We live in an incredibly cool country!\"",
+	"that he has trouble remembering things.",
+]
+phrase_anecdotes = [
+	"I didn't vote for him.",
+	"it's time for a change in government.",
+]
 
 [pairs.library]
 face = "/080019_recolored.png"
 phrase = "Librarian"
+names = ["Simon", "Sylvester", "Samuel", "Stefan"]
+face_anecdotes = [
+	"this is {name}, he always says {quote}",
+	"this is {name}, he tells me {quote}",
+]
+quotes = [
+	"that I need to return something.",
+	"\"See you in six weeks!\"",
+	"\"You've already read that one a thousand times!\"",
+]
+phrase_anecdotes = [
+	"in another life I would have become a librarian too.",
+	"I don't understand how he finds his way in that labyrinth.",
+]
 
 [pairs.nurse]
 face = "/080041_recolored.png"
 phrase = "Janitor"
+names = ["David", "Daniel", "Darryl", "Damon", "James"]
+face_anecdotes = [
+	"this is {name}, he always says {quote}",
+	"this is {name}, he tells me {quote}",
+]
+quotes = [
+	"\"Good morning!\"",
+	"\"Have a nice day!\"",
+	"I look great.",
+]
+phrase_anecdotes = [
+	"there's nothing wrong with an honest day's work.",
+	"the janitor works night shifts too.",
+]
 
 [pairs.scientist]
 face = "/080175_recolored.png"
 phrase = "Scientist"
+names = ["Alan", "Adrian", "Aaron", "Eric"]
+face_anecdotes = [
+	"this is {name}, he always says {quote}",
+	"this is {name}, he says things like {quote}",
+]
+quotes = [
+	"we should keep our distance.",
+	"\"It's going to get worse before it gets better.\"",
+]
+phrase_anecdotes = [
+	"I don't trust these so called experts.",
+	"scientists are so pretentious.",
+]
 
 [pairs.computer]
 face = "/080216_recolored.png"
 phrase = "Computer Guy"
+names = ["Mark", "Morris", "Marvin", "Michael"]
+face_anecdotes = [
+	"this is {name}, he always says {quote}",
+	"this is {name}, he tells me {quote}",
+]
+quotes = [
+	"that I should learn how to use electronic mail.",
+	"things no one understands. I just nod approvingly.",
+]
+phrase_anecdotes = [
+	"a nice young man helps me when the internet is acting up.",
+	"I like the fellow that comes over to fix my computer.",
+]

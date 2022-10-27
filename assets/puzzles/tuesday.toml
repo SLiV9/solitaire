@@ -22,23 +22,66 @@ phrase = "Where is my pen?"
 
 [answer]
 phrase = "On a shelf"
+phrase_anecdotes = [
+	"I should clean up more often. I can never find anything."
+]
 
 [pairs.jewerly]
 face = "Gold Ring"
-phrase = "Between my socks"
+phrase = "In my drawers"
+conclusion = "My gold ring is safe here."
+face_anecdotes = [
+	"this ring is one of my most prized possessions.",
+	"I have to hide my ring because the woman who cleans here is a thief.",
+]
+phrase_anecdotes = [
+	"this is a good place to hide valuables.",
+	"no one is going to rummage through my unmentionables.",
+]
 
 [pairs.newspaper]
 face = "Newspaper"
 phrase = "On the coffee table"
+face_anecdotes = [
+	"I read the paper in the morning or in the afternoon.",
+	"nothing beats a hot mug and a newspaper.",
+]
+phrase_anecdotes = [
+	"this table in front of the couch is covered in books and magazines.",
+	"I like to read in the afternoon.",
+]
 
 [pairs.glasses]
-face = "Glasses"
-phrase = "Next to my bed"
+face = "Reading glasses"
+phrase = "In my hand"
+conclusion = "I can't find anything with these glasses on."
+face_anecdotes = [
+	"I'm farsighted.",
+	"I never go far without my glasses.",
+]
+phrase_anecdotes = [
+	"I keep fidgeting.",
+	"I can only carry so many things.",
+]
 
 [pairs.cards]
 face = "Playing cards"
 phrase = "On the dinner table"
+face_anecdotes = [
+	"I like to play some Pile Up after dinner.",
+	"I used to have friends over for a good meal and some card games.",
+]
+phrase_anecdotes = [
+	"I used to play board games on this table.",
+	"this table has a lot of room to lay things out.",
+]
 
 [pairs.keys]
 face = "Keys"
 phrase = "On the piano"
+face_anecdotes = [
+	"I keep my keys just below eye height, where I can always see them.",
+]
+phrase_anecdotes = [
+	"the piano is the first thing you see when you walk in the door.",
+]

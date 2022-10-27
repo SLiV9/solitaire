@@ -25,6 +25,7 @@ var _locked_locations = []
 var _max_num_memories = 0
 var _memories = []
 var _answer_phrase = ""
+var _last_three_anecdotees = []
 
 
 func _ready():
@@ -179,3 +180,65 @@ func lock_card(card: Card):
 	_opened_entities.remove(_opened_entities.find(entity_name))
 	_locked_entities.append(entity_name)
 	_locked_locations.append(card.location_number)
+
+
+func anecdote_for_pair(pair_name):
+	var phrases = ["Yes.", "That's it!", "Makes sense.", "Of course.", "Got it."]
+	var phrase = phrases[randi() % phrases.size()]
+	return data.get_value("pairs." + pair_name, "conclusion", phrase)
+
+func left_anecdote(entity_name):
+	var anecdote = _anecdote(entity_name)
+	if anecdote != null:
+		return _to_upper1(anecdote)
+	var phrases = ["Hmm.", "Hmm...", "Ok.", "Ok...", "Right.", "Right..."]
+	var phrase = phrases[randi() % phrases.size()]
+	return phrase
+
+func right_anecdote(entity_name):
+	var anecdote = _anecdote(entity_name)
+	if anecdote == null:
+		anecdote = "that's something else."
+	var phrases = ["Hmm, %s", "Hmm... %s", "No, %s", "No... %s",
+		"But %s", "Whereas %s", "And %s", "While %s",
+	]
+	var phrase = phrases[randi() % phrases.size()]
+	return phrase % [anecdote]
+
+func _anecdote(entity_name):
+	if _last_three_anecdotees.has(entity_name):
+		return null
+	_last_three_anecdotees.push_front(entity_name)
+	if _last_three_anecdotees.size() > 3:
+		_last_three_anecdotees.resize(3)
+	var section_name = entity_name
+	var anecdotes
+	if entity_name.ends_with("?"):
+		var pair_name = entity_name.rstrip("?!")
+		section_name = "pairs." + pair_name
+		anecdotes = data.get_value(section_name, "face_anecdotes")
+	elif entity_name.ends_with("!"):
+		var pair_name = entity_name.rstrip("?!")
+		section_name = "pairs." + pair_name
+		anecdotes = data.get_value(section_name, "phrase_anecdotes")
+	elif includes_question():
+		anecdotes = data.get_value(section_name, "phrase_anecdotes")
+	else:
+		return "why?"
+	var anecdote = anecdotes[randi() % anecdotes.size()]
+	if "{name}" in anecdote:
+		var names = data.get_value(section_name, "names")
+		var fullname = names[randi() % names.size()]
+		var surnames = data.get_value("puzzle", "surnames", [])
+		if surnames.size() > 0:
+			var surname = surnames[randi() % surnames.size()]
+			fullname = "%s %s" % [fullname, surname]
+		anecdote = anecdote.replace("{name}", fullname)
+	if "{quote}" in anecdote:
+		var quotes = data.get_value(section_name, "quotes")
+		var quote = quotes[randi() % quotes.size()]
+		anecdote = anecdote.replace("{quote}", quote)
+	return anecdote
+
+func _to_upper1(string):
+	return string[0].to_upper() + string.substr(1,-1)

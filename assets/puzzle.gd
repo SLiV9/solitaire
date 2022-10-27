@@ -28,12 +28,13 @@ func _ready():
 		else:
 			card.name = "Card" + str(i)
 			card.call_deferred("enable_after", reveal_delay)
-			_quest_zone.visible = false
-			_discard_pile.visible = false
 		card.connect("opened", self, "_on_Card_opened")
 		card.call_deferred("place", delay)
 		delay -= 0.2
 		_grid.add_child(card)
+	if not $Brain.includes_question():
+		_quest_zone.visible = false
+		_discard_pile.visible = false
 	_anecdote.text = $Brain.introduction()
 
 
@@ -63,6 +64,7 @@ func _on_Card_opened(new_card):
 	if opened.size() >= 2:
 		var is_pair = opened[0].pair_name == opened[1].pair_name
 		if is_pair:
+			var pair_name = opened[0].pair_name
 			num_pairs_remaining -= 1
 			var delay = 0.3
 			var duration = 0.8
@@ -72,6 +74,9 @@ func _on_Card_opened(new_card):
 				delay += 0.3
 				duration += 0.4
 			opened = []
+			_anecdote.text = $Brain.anecdote_for_pair(pair_name)
+		else:
+			_anecdote.text = $Brain.right_anecdote(new_card.entity_name)
 	elif num_pairs_remaining == 0:
 		Progress.complete_current_day()
 		var conclusion = $Brain.conclusion()
@@ -82,6 +87,8 @@ func _on_Card_opened(new_card):
 			$Fireworks.visible = true
 			$VictorySfx.play()
 			_back_button.text = "Leave"
+	else:
+		_anecdote.text = $Brain.left_anecdote(new_card.entity_name)
 
 
 

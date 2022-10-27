@@ -11,18 +11,35 @@ num_cols = 3
 num_rows = 2
 includes_question = true
 introduction = "When I was little, someone told me that even while alone, they were never bored, because they had a lifetime of memories. At the time I thought it was comforting. Now, I'm not so sure."
-conclusion = "That's it."
+conclusion = "That's it. The start of a brand new week."
 
 [question]
 phrase = "What day is it today?"
 
 [answer]
 phrase = "Monday"
+phrase_anecdotes = [
+	"I watch that show about animals on mondays."
+]
 
 [pairs.yesterday]
-face = "Sunday"
-phrase = "Yesterday"
+face = "Yesterday"
+phrase = "Sunday"
+conclusion = "Of course, yesterday was a sunday."
+face_anecdotes = [
+	"I still have some leftover soup from yesterday in the fridge.",
+]
+phrase_anecdotes = [
+	"I always eat soup on sundays.",
+]
 
 [pairs.tomorrow]
-face = "Tuesday"
-phrase = "Tomorrow"
+face = "Tomorrow"
+phrase = "Tuesday"
+conclusion = "Tomorrow has to be tuesday."
+face_anecdotes = [
+	"I have to go out and buy postage stamps tomorrow."
+]
+phrase_anecdotes = [
+	"on tuesdays I write letters to my friends and family."
+]
