@@ -36,6 +36,7 @@ func _ready():
 		_quest_zone.visible = false
 		_discard_pile.visible = false
 	_anecdote.text = $Brain.introduction()
+	$StartSfx.play()
 
 
 func _on_Card_revealed(card):
@@ -83,6 +84,7 @@ func _on_Card_opened(new_card):
 		_anecdote.text = conclusion
 		if len(conclusion) > 0:
 			_back_button.text = "Continue"
+			$SuccessSfx.play()
 		else:
 			$Fireworks.visible = true
 			$VictorySfx.play()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/palettes/stormy-beach-1x-modified.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/Fasthand/Fasthand-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/palettes/stormy-beach-1x.png" type="Texture" id=4]
 [ext_resource path="res://assets/titlescreen.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/522588__shortrecord__sad-piano.mp3" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 240
@@ -37,14 +38,14 @@ __meta__ = {
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 121.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 125.0
+margin_top = 124.0
 margin_right = 1024.0
-margin_bottom = 440.0
+margin_bottom = 439.0
 custom_colors/default_color = Color( 0.0666667, 0.0588235, 0.0588235, 1 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
@@ -56,20 +57,21 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 444.0
+margin_top = 443.0
 margin_right = 1024.0
 margin_bottom = 475.0
+rect_min_size = Vector2( 0, 32 )
 custom_constants/separation = 20
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_right = 470.0
-margin_bottom = 31.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="StartButton" type="LinkButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 490.0
 margin_right = 533.0
-margin_bottom = 31.0
+margin_bottom = 32.0
 focus_mode = 2
 text = "Start"
 underline = 1
@@ -121,7 +123,7 @@ underline = 1
 [node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_left = 553.0
 margin_right = 1024.0
-margin_bottom = 31.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
@@ -148,6 +150,9 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TitleTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton1" to="." method="_on_StartButton1_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/card.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/puzzle.gd" type="Script" id=5]
 [ext_resource path="res://assets/victory_shader.tres" type="Shader" id=6]
 [ext_resource path="res://assets/palettes/stormy-beach-1x.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/cardOpenPackage2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/325112__fisch12345__success.wav" type="AudioStream" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -17,6 +19,9 @@ shader_param/NUM_PARTICLES = 70.0
 shader_param/palette_size = 9
 shader_param/MOD3 = Vector3( 0.1031, 0.11369, 0.13787 )
 shader_param/palette = ExtResource( 7 )
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 8 )
 
 [node name="Puzzle" type="Control"]
 anchor_right = 1.0
@@ -165,5 +170,12 @@ script = ExtResource( 3 )
 [node name="VictorySfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -2.622
+
+[node name="StartSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 2 )
+
+[node name="SuccessSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -16.606
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

@@ -10,6 +10,7 @@ func _ready():
 		find_node("StartButton3").visible = true
 		find_node("StartButton4").visible = true
 		find_node("StartButton5").visible = true
+	$TitleTheme.play()
 
 func goto_day(day_number):
 	Progress.current_day_number = day_number
