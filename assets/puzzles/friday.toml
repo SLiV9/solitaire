@@ -23,16 +23,56 @@ phrase = "I feel lonely sometimes"
 
 [pairs.sister]
 face = "/093087_recolored.png"
-phrase = "Died 10 years ago"
+phrase = "Died 23 years ago"
+names = ["Mary"]
+conclusion = "Losing a sister is never easy."
+face_anecdotes = [
+	"{name} died so long ago.",
+]
+phrase_anecdotes = [
+	"I can't believe they still have not found a cure for cancer.",
+]
 
 [pairs.cat]
 face = "{cat.png}"
 phrase = "Got hit by a car"
+names = ["{cat.name}"]
+conclusion = "A decade later it still hurts. I don't think I can go through that again."
+face_anecdotes = [
+	"{name} died ten years ago.",
+]
+phrase_anecdotes = [
+	"people who drive fifty in a quiet street deserve to get shot.",
+]
 
 [pairs.crush]
 face = "/093006_recolored.png"
 phrase = "Never knew I loved him"
+names = ["Luke", "Raymond", "William", "Dan"]
+conclusion = "If only I could go back in time."
+face_anecdotes = [
+	"{name} was my first crush in high school.",
+]
+phrase_anecdotes = [
+	"I wish I had had the courage to tell him.",
+]
 
 [pairs.everyone]
 face = "Everyone else"
 phrase = "Hates me"
+names = [
+	"David", "Daniel", "Darryl", "Damon", "James",
+	"Alan", "Adrian", "Aaron", "Eric",
+	"Mark", "Morris", "Marvin", "Michael",
+	"Simon", "Sylvester", "Samuel", "Stefan",
+	"Richard", "Emanuel", "Nicholas",
+	"Sylvia", "Erin", "Maria", "Rachel", "Susan",
+	"Julia", "Catherine", "Beatrix", "Nora",
+]
+conclusion = "I know the way they talk about me behind my back."
+face_anecdotes = [
+	"I've always worried what other people think of me.",
+]
+phrase_anecdotes = [
+	"my social anxiety gets really bad some days.",
+]

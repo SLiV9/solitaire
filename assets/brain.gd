@@ -94,6 +94,7 @@ func _remaining_answer():
 			var pair_name = entity_name.rstrip("?!")
 			_answer_phrase = data.get_value("pairs." + pair_name, "phrase")
 			Progress.cat_picture = data.get_value("pairs." + pair_name, "face")
+			Progress.cat_name = _answer_phrase
 			return _answer_phrase
 	return data.get_value("answer", "phrase")
 
@@ -230,7 +231,9 @@ func _anecdote(entity_name):
 		var names = data.get_value(section_name, "names")
 		var fullname = names[randi() % names.size()]
 		var surnames = data.get_value("puzzle", "surnames", [])
-		if surnames.size() > 0:
+		if fullname == "{cat.name}":
+			fullname = Progress.cat_name
+		elif surnames.size() > 0:
 			var surname = surnames[randi() % surnames.size()]
 			fullname = "%s %s" % [fullname, surname]
 		anecdote = anecdote.replace("{name}", fullname)
