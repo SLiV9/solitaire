@@ -38,6 +38,8 @@ func _ready():
 func _on_Card_revealed(card):
 	$Brain.open_question_card(card)
 	card.call_deferred("set", "pressed", true)
+	if 2 * num_pairs_remaining >= $Brain.num_cards():
+		num_pairs_remaining -= 1
 
 
 func _on_Card_opened(new_card):

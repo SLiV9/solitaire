@@ -22,6 +22,7 @@ var _locked_locations = []
 
 var _max_num_memories = 0
 var _memories = []
+var _answer_phrase = ""
 
 
 func _ready():
@@ -69,12 +70,20 @@ func introduction():
 	return data.get_value("puzzle", "introduction")
 
 func conclusion():
-	return data.get_value("puzzle", "conclusion")
+	var text = data.get_value("puzzle", "conclusion")
+	return text.replace("{answer}", _answer_phrase)
 
 func question():
 	return data.get_value("question", "phrase")
 
 func answer():
+	if data.has_section("answer"):
+		return data.get_value("answer", "phrase")
+	for entity_name in _available_entities:
+		if entity_name.ends_with("!"):
+			var pair_name = entity_name.rstrip("?!")
+			_answer_phrase = data.get_value("pairs." + pair_name, "phrase")
+			return _answer_phrase
 	return data.get_value("answer", "phrase")
 
 

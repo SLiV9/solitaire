@@ -15,7 +15,7 @@ num_cols = 5
 num_rows = 2
 includes_question = true
 introduction = "My cat is gone. I have gone out into the woods looking for them."
-conclusion = "Great, now I can send my letter."
+conclusion = "{answer}! {answer}!!!"
 
 [question]
 phrase = "What should I yell?"

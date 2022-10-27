@@ -7,17 +7,38 @@
 spoilers = true
 
 [brain]
-max_num_memories = 7
+suffers_from_confusion = true
+max_num_memories = 15
 
 [puzzle]
 num_cols = 6
 num_rows = 2
 includes_question = true
-introduction = "I'm writing a letter to my sister, Mary. She never responds, but I want her to know I haven't forgotten about her."
-conclusion = "Great, now I can send my letter."
+introduction = "A man has barged into my room. He is asking all kinds of rude questions."
+conclusion = "Oh that's right, this is my physician Dr. Walters. I don't know who told him to come over. There's nothing wrong with me."
 
 [question]
 phrase = "Who is this man?"
 
 [answer]
-phrase = "On a shelf"
+phrase = "Physician"
+
+[pairs.president]
+face = "/080017_recolored.png"
+phrase = "Prime Minister"
+
+[pairs.library]
+face = "/080019_recolored.png"
+phrase = "Librarian"
+
+[pairs.nurse]
+face = "/080041_recolored.png"
+phrase = "Janitor"
+
+[pairs.scientist]
+face = "/080175_recolored.png"
+phrase = "Scientist"
+
+[pairs.computer]
+face = "/080216_recolored.png"
+phrase = "Computer Guy"
