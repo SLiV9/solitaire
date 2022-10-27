@@ -1,0 +1,41 @@
+##############################################################################
+###                                                                        ###
+###                            HERE BE SPOILERS                            ###
+###                                                                        ###
+##############################################################################
+[spoilers]
+spoilers = true
+
+[brain]
+suffers_from_misplacement = true
+max_num_memories = 6
+
+[puzzle]
+num_cols = 5
+num_rows = 2
+includes_question = true
+introduction = "My cat is gone. I have gone out into the woods looking for them."
+conclusion = "Great, now I can send my letter."
+
+[question]
+phrase = "What should I yell?"
+
+[pairs.whiskers]
+face = "/027015_recolored.png"
+phrase = "Whiskers"
+
+[pairs.marmalade]
+face = "/027019_recolored.png"
+phrase = "Marmalade"
+
+[pairs.mimi]
+face = "/027109_recolored.png"
+phrase = "Mimi"
+
+[pairs.nora]
+face = "/028235_recolored.png"
+phrase = "Nora"
+
+[pairs.grumpy]
+face = "/028775_recolored.png"
+phrase = "Grumpy"

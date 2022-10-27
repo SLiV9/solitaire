@@ -49,7 +49,7 @@ custom_colors/default_color = Color( 0.0666667, 0.0588235, 0.0588235, 1 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Solitaire[/center]"
-text = "[center]Solitaire[/center]"
+text = "Solitaire"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false

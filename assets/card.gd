@@ -9,18 +9,30 @@ export var entity_name = ""
 export var pair_name = ""
 export var phrase = "Huh?!"
 
-onready var _label = $Front/MarginContainer/VBoxContainer/RichTextLabel
+onready var _label = find_node("Phrase")
+onready var _image = find_node("Image")
+onready var _image_container = find_node("ImageContainer")
 
 
 func _ready():
 	self.disabled = true
 	$Back.visible = false
 	_label.bbcode_text = "[center]%s[/center]" % [self.phrase]
+	_label.visible = true
+	_image_container.visible = false
 
 
 func set_phrase(new_phrase):
 	self.phrase = new_phrase
 	_label.bbcode_text = "[center]%s[/center]" % [new_phrase]
+	_label.visible = true
+	_image_container.visible = false
+
+
+func set_image(picture_filename):
+	_image.texture = load("res://assets/pictures/%s" % [picture_filename])
+	_image_container.visible = true
+	_label.visible = false
 
 
 func _on_Card_toggled(button_pressed):

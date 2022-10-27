@@ -127,11 +127,14 @@ func open_card(card: Card):
 	var pair_name = entity_name.rstrip("?!")
 	card.pair_name = pair_name
 	if entity_name.ends_with("?"):
-		var face = data.get_value("pairs." + pair_name, "face")
-		card.set_phrase(face)
+		var face_or_phrase = data.get_value("pairs." + pair_name, "face")
+		if face_or_phrase.begins_with("/"):
+			card.set_image(face_or_phrase.lstrip("/"))
+		else:
+			card.set_phrase(face_or_phrase)
 	elif entity_name.ends_with("!"):
-		var face = data.get_value("pairs." + pair_name, "phrase")
-		card.set_phrase(face)
+		var phrase = data.get_value("pairs." + pair_name, "phrase")
+		card.set_phrase(phrase)
 	else:
 		var phrase = data.get_value(entity_name, "phrase")
 		card.set_phrase(phrase)
